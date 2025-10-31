@@ -3,10 +3,10 @@ import { useTheme } from './hook/useTheme';
 
 import Header from './blocks/Header';
 import Hero from './blocks/Hero';
-import Education from './Blocks/Education';
-import Stack from './Blocks/Stack';
-import Projects from './Blocks/Projects';
-import Contact from './Blocks/Contact';
+import Education from './blocks/Education';
+import Stack from './blocks/Stack';
+import Projects from './blocks/Projects';
+import Contact from './blocks/Contact';
 import Footer from './blocks/Footer';
 
 // --- Main App Component ---
