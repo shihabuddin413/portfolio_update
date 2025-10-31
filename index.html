@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my-app</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class', 
+        theme: {
+          extend: {
+            // আপনার যদি কাস্টম কালার বা অন্য কিছু লাগে, তা এখানে যোগ করতে পারেন
+             keyframes: {
+                scroll: {
+                  "0%": { transform: "translateX(0)" },
+                  "100%": { transform: "translateX(-50%)" },
+                },
+              },
+              animation: {
+                scroll: "scroll 2s linear infinite",
+              },
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
