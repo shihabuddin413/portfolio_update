@@ -2,17 +2,40 @@
 
 import {Sun, Moon, Menu, X} from 'lucide-react'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { doc, getDoc } from "firebase/firestore"; 
+import { db } from "../firebase";  
 
 const Header = ({ theme, onToggleTheme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-  const navLinks = [
-    { name: 'Work', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
-  ];
+  const [navLinks, setNavLinks] = useState([
+    { name: "Work", href: "#projects" },
+    { name: "Contact", href: "#contact" },
+  ]);
 
-  let shortName = 'SS';
+  const [shortName, setShortName] = useState("SS");
+
+  useEffect(() => {
+    const fetchHeaderData = async () => {
+      try {
+        const docRef = doc(db, "header", "config"); // collection: header, document: config
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          if (data.navLinks) setNavLinks(data.navLinks);   // Update navLinks
+          if (data.shortName) setShortName(data.shortName); // Update shortName
+        }
+      } catch (error) {
+        console.error("Error fetching header data:", error);
+      }
+    };
+
+    fetchHeaderData();
+  }, []);
+
+
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 dark:bg-[#0B1120]/80 backdrop-blur-md">

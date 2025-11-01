@@ -12,3 +12,16 @@
     "ELSH" 0,
     "ELXP" 0;
 }
+
+
+.ff{
+  font-family: fantasy!important;
+}
+
+.dash_br{
+  border: 2px dashed blue;
+}
+
+.dash_br_n{
+  border: 2px dashed skyblue;
+}

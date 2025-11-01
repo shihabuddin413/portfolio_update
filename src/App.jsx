@@ -1,6 +1,7 @@
 
 import { useTheme } from './hook/useTheme';
 
+import Basics from './admin/basics';
 import Header from './blocks/Header';
 import Hero from './blocks/Hero';
 import Education from './blocks/Education';
@@ -9,19 +10,126 @@ import Projects from './blocks/Projects';
 import Contact from './blocks/Contact';
 import Footer from './blocks/Footer';
 
+import { useState, useEffect } from "react";
+import { doc, getDoc, updateDoc  } from "firebase/firestore"; 
+import { db } from "./firebase";  
+
 // --- Main App Component ---
 export default function App() {
+
   const [theme, toggleTheme] = useTheme();
+
+  const [status, setStatus] = useState(false)
+
+  const handleHideAdmin = async () => {
+    try {
+      const statusRef = doc(db, "showadmin", "status"); // collection: showadmin, document: status
+      await updateDoc(statusRef, {
+        show: !status
+      });
+      setStatus(!status)
+      console.log('status is : ', status)
+      // alert("Admin hidden successfully!");
+    } catch (error) {
+      console.error("Error updating document:", error);
+      alert("Failed to update status");
+    }
+  };
+
+  useEffect(() => {
+    const fetchHeaderData = async () => {
+      try {
+        const docRef = doc(db, "showadmin", "status"); 
+        const docSnap = await getDoc(docRef);
+
+        console.log(docSnap)
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          console.log(data.show)
+          if (data.show) setStatus(data.show); 
+        }
+        
+      } catch (error) {
+        console.error("Error fetching header data:", error);
+      }
+    };
+
+    fetchHeaderData();
+  }, []);
+
+
+
+  const EditMode = ({n, container}) =>{
+    return (
+      <div className={` ${n == 0? 'm-4': 'mt-12'}  p-4 border border-2 border-dashed border-blue-700 dark:border-red-300`}>
+        <div className=' bg-sky-50  dark:bg-sky-900'>
+          <div>
+            <p className='ff bg-red-50 text-red-700 ps-2'>Edit mode</p>
+          </div>
+          <div className='flex items-center bg-red-100 py-2 border border-red-600 ps-2'>
+            <span className='text-sm text-red-700 ff me-1'>section </span>
+            <span className='text-md text-red-100 text-center 
+          ff h-6 w-6 rounded bg-red-500 rounded-full'>{n}</span>
+          </div>
+
+          <div className='p-8'>
+            {container}
+          </div>   
+        </div>
+      </div>
+    )
+  }
+ 
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#0B1120] text-gray-700 dark:text-gray-300 font-sans transition-colors duration-300">
-      <Header theme={theme} onToggleTheme={toggleTheme} />
+      {status ? 
+          <EditMode n={0} container={<Header theme={theme} onToggleTheme={toggleTheme} />} />:
+          <Header theme={theme} onToggleTheme={toggleTheme} />
+      }
+      
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Hero />
-        <Stack />
-        <Education />
-        <Projects />
-        <Contact />
+        {/* edit mode button with 'basics' component 
+        you can disable it through comments */}
+
+        
+        {status == 0 ? 
+            <button 
+              className='p-1 px-4 bg-gray-500 text-gray-500 border border-gray-500 ff hover:bg-gray-500 hover:text-gray-100' 
+              onClick={handleHideAdmin}> Edit? </button>
+              :''
+        }
+
+
+        {status ? <Basics hideFunc={handleHideAdmin} /> : ''}
+        {/* main portoflio */}
+
+        {status ? 
+          <EditMode n={1} container={<Hero/>} />:
+          <Hero  />
+        }
+        
+        {status ? 
+          <EditMode n={2} container={<Stack/>} />:
+          <Stack/>
+        }
+        
+        {status ? 
+          <EditMode n={3} container={<Education/>} />:
+          <Education/>
+        }
+        
+        {status ? 
+          <EditMode n={4} container={<Projects/>} />:
+          <Projects/>
+        }
+        
+        {status ? 
+          <EditMode n={5} container={<Contact/>} />:
+          <Contact />
+        }
+        
       </main>
       <Footer />
     </div>
