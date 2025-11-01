@@ -1,7 +1,7 @@
 
 import { useTheme } from './hook/useTheme';
 
-import Basics from './admin/basics';
+import Basics from './admin/Basics';
 import Header from './blocks/Header';
 import Hero from './blocks/Hero';
 import Education from './blocks/Education';
@@ -96,7 +96,7 @@ export default function App() {
         
         {status == 0 ? 
             <button 
-              className='p-1 px-4 bg-gray-500 text-gray-500 border border-gray-500 ff hover:bg-gray-500 hover:text-gray-100' 
+              className='p-1 text-sm font-bold px-4 bg-gray-400 text-gray-400 ff hover:bg-gray-500 hover:text-gray-100' 
               onClick={handleHideAdmin}> Edit? </button>
               :''
         }

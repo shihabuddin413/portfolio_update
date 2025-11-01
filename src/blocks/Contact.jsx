@@ -119,9 +119,9 @@ const Contact = () => {
 
   return (
     <Section id="contact" title="Ping Me!">
-      <div className="max-w-3xl mx-auto text-center pt-12">
+      <div className="max-w-3xl mx-auto text-center pt-4">
         {/* Intro Text */}
-        <div className="text-lg text-justify text-gray-700 dark:text-gray-400 leading-relaxed space-y-6 mb-12">
+        <div className="text-lg text-left text-gray-700 dark:text-gray-400 leading-relaxed space-y-6 mb-12">
           <p> {aLittleMoreAboutMe} </p>
           <p> {yourClosingClause} </p>
         </div>
@@ -178,8 +178,7 @@ const Contact = () => {
           className=" px-4 py-4 text-lg font-medium text-purple-500 "
         >
           <div className="flex justify-center items-center mt-0">
-            <span style={{fontFamily:'fantasy'}} 
-                  className="text-2xl bg-gradient-to-r from-purple-600 to-blue-800 lg:text-4xl text-white shadow-md shadow-purple-500 translate-y-0.5 px-2"> 
+            <span className="rounded text-2xl bg-gradient-to-r from-purple-600 to-blue-800 lg:text-4xl text-white shadow-sm shadow-purple-500 translate-y-0.5 px-2"> 
                   {email} 
             </span>
             <span className="text-blue-800 dark:text-blue-500 pt-16 animate-pulse">
