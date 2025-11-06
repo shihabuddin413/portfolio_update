@@ -66,3 +66,7 @@ export const callGeminiAPI = async (userPrompt, systemInstruction, expectJson = 
     }
   }
 };
+
+export const refresh = () => {
+    window.location.reload()
+}

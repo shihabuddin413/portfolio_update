@@ -43,14 +43,15 @@ export const SocialLinks = () => {
   return (
     <div>
         <div>
-            <p className="text-xl pb-1 text-purple-500">Find me on on ...</p>
+            <p className="text-xl pb-1 text-purple-500"></p>
         </div>
-        <div className="relative flex items-center justify-center w-full h-48 
+        <div className="relative flex items-center justify-center w-full h-56 
   bg-gradient-to-br from-gray-50 via-white to-gray-100
   dark:bg-gradient-to-br dark:from-gray-800 dark:via-gray-900 dark:to-gray-800
   rounded-3xl shadow-inner overflow-hidden">
-        
+        <span className={`${icons[index].iconColor} pb-40 ff `}> Find me on on ...</span>
         <AnimatePresence mode="exitBeforeEnter" initial={false} className='dark:bg-gray-900'>
+            
             <motion.div
             key={icons[index].id}
             initial={{ opacity: 0, rotateY: -90, scale: 0.8 }}
@@ -67,7 +68,7 @@ export const SocialLinks = () => {
                 >
                     
                         <span>{icons[index].icon} </span>                
-                        <span className="text-4xl" style={{fontFamily:'fantasy'}}>{icons[index].iconName}</span>
+                        <span className="text-4xl ff">{icons[index].iconName}</span>
                     
                 </motion.div>
                 </a>

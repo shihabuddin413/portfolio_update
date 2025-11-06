@@ -43,8 +43,6 @@ const TechIcon = ({ name, className = "w-6 h-6" }) => {
   }
 };
 
-
-
 const TechnologyCard = ({ name }) => (
   <div className="flex  items-center space-x-4 p-6 bg-gray-50 dark:bg-[#171F30] rounded-lg shadow-md hover:shadow-lg  transition-shadow duration-300">
     <TechIcon name={name} className="w-8 h-8 text-purple-500 dark:text-purple-400" />

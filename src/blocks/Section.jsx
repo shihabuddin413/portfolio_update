@@ -1,7 +1,7 @@
 // --- Section Wrapper Component ---
 const Section = ({ title, subtitle, children, id }) => (
   <section id={id} className="py-20">
-    <h2 className="text-4xl md:text-5xl text-gray-400 dark:text-white mb-4">
+    <h2 className="text-4xl  md:text-5xl text-gray-400 dark:text-white mb-4">
       {title}
       <span className="text-purple-500">.</span>
     </h2>

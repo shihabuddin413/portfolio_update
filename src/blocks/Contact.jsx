@@ -178,7 +178,7 @@ const Contact = () => {
           className=" px-4 py-4 text-lg font-medium text-purple-500 "
         >
           <div className="flex justify-center items-center mt-0">
-            <span className="rounded text-2xl bg-gradient-to-r from-purple-600 to-blue-800 lg:text-4xl text-white shadow-sm shadow-purple-500 translate-y-0.5 px-2"> 
+            <span className=" ff rounded text-2xl bg-gradient-to-r from-blue-700 to-blue-500 lg:text-4xl text-white shadow-sm shadow-blue-500 translate-y-0.5 px-2"> 
                   {email} 
             </span>
             <span className="text-blue-800 dark:text-blue-500 pt-16 animate-pulse">
