@@ -1,15 +1,40 @@
 import Section from "./Section";
-import profile from '../assets/cat.jpg'
+import profile from '../assets/img.png'
 import { Mouse } from "lucide-react";
+
+import { useState, useEffect } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 // --- Hero Component ---
 const Hero = () => {
 
-  const buttonText = "Discover More"
-  const whoYouAre = `not Why but When?`
+  const [buttonText, setbuttonText] = useState("Discover More")
+  const [whoYouAre, setwhoYouAre] = useState('not Why but When?')
 
-  const firstName = 'Shihabe '
-  const lastName = 'Shangvi'
+  const [firstName, setfirstName] = useState('Shihabe ')
+  const [lastName, setlastName] =  useState('Shangvi')
+
+  useEffect(() => {
+        const fetchHeroData = async () => {
+            try {
+                const docRef = doc(db, "hero", "config"); // collection: header, document: config
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if (data.buttonText) setbuttonText(data.buttonText);
+                    if (data.whoYouAre) setwhoYouAre(data.whoYouAre);
+                    if (data.firstName) setfirstName(data.firstName);
+                    if (data.lastName) setlastName(data.lastName);
+                }
+            } catch (error) {
+                console.error("Error fetching header data:", error);
+            }
+        };
+
+        fetchHeroData();
+  }, []);
 
   return (
       <section id="hero" className="py-12 border-left border-purple md:py-18">   

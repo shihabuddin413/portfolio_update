@@ -51,7 +51,7 @@ const Header = ({ theme, onToggleTheme }) => {
             <a
               key={link.name} 
               href={link.href}
-              className="text-lg bg-purple-400 py-1 px-4 rounded font-medium text-white dark:text-gray-900 hover:text-purple-400 dark:hover:text-purple-400 transition-colors"
+              className="text-lg bg-purple-400 py-1 px-4 rounded font-medium text-white dark:text-gray-900 hover:text-black dark:hover:text-white transition-colors"
             >
               {link.name}
             </a>
